@@ -16,7 +16,7 @@ export function fmtTamanho(bytes: number): string {
 export function parseBrt(s: string): number {
   const m = s.match(/(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})(?::(\d{2}))?/);
   if (!m) return 0;
-  return Date.UTC(+m[3], +m[2] - 1, +m[1], +m[4], +m[5], +(m[6] ?? 0));
+  return Date.UTC(+m[3]!, +m[2]! - 1, +m[1]!, +m[4]!, +m[5]!, +(m[6] ?? 0));
 }
 
 export function minutosDesde(iso: string | null, agora = Date.now()): number | null {

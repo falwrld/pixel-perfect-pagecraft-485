@@ -37,11 +37,11 @@ function criar() {
   let nextId = 1050;
   const itens: Item[] = [
     mkItem({ id: 1041, nome: "FOLHA_ALESP_202611.txt", pasta: "/ALESP/out", tamanho: 2_458_112,
-      sugestoes: [{ regra: "Folha ALESP", grupo: "Legislativo", tipo: "pasta", destino: DESTINOS[0], origem_ok: true, periodo_ok: true, bloqueante: false, avisos: [] }] }, 4),
+      sugestoes: [{ regra: "Folha ALESP", grupo: "Legislativo", tipo: "pasta", destino: DESTINOS[0]!, origem_ok: true, periodo_ok: true, bloqueante: false, avisos: [] }] }, 4),
     mkItem({ id: 1042, nome: "TJSP_FOLHA_11_2026.zip", pasta: "/TJSP/remessa", tamanho: 15_872_000,
-      sugestoes: [{ regra: "Folha TJSP", grupo: "Judiciário", tipo: "pasta", destino: DESTINOS[1], origem_ok: true, periodo_ok: false, bloqueante: false, avisos: ["Arquivo recebido fora da janela (dias 02 a 08)."] }] }, 22),
+      sugestoes: [{ regra: "Folha TJSP", grupo: "Judiciário", tipo: "pasta", destino: DESTINOS[1]!, origem_ok: true, periodo_ok: false, bloqueante: false, avisos: ["Arquivo recebido fora da janela (dias 02 a 08)."] }] }, 22),
     mkItem({ id: 1043, nome: "USP_CONTRIB_202611.csv", pasta: "/UNICAMP/out", tamanho: 845_000, diagnostico: "origem_diferente",
-      sugestoes: [{ regra: "Contribuições USP", grupo: "Universidades", tipo: "pasta", destino: DESTINOS[2], origem_ok: false, periodo_ok: true, bloqueante: true, avisos: ["Origem esperada: /USP/out — recebido em /UNICAMP/out."] }] }, 48),
+      sugestoes: [{ regra: "Contribuições USP", grupo: "Universidades", tipo: "pasta", destino: DESTINOS[2]!, origem_ok: false, periodo_ok: true, bloqueante: true, avisos: ["Origem esperada: /USP/out — recebido em /UNICAMP/out."] }] }, 48),
     mkItem({ id: 1044, nome: "arquivo_final_v2 (1).txt", pasta: "/MPSP/out", tamanho: 12_400, diagnostico: "nomenclatura_suspeita", na_relacao: false,
       avisos_gerais: ["Nome fora do padrão esperado pela entidade."] }, 75),
     mkItem({ id: 1045, nome: "RELATORIO_XPTO_2026.pdf", pasta: "/DIVERSOS", tamanho: 310_000, diagnostico: "nao_consta", na_relacao: false,
@@ -49,8 +49,8 @@ function criar() {
     mkItem({ id: 1046, nome: "IAMSPE_CONTRIB_202611.xlsx", pasta: "/IAMSPE/out", tamanho: 98_000,
       sugestoes: [{ regra: "IAMSPE (e-mail)", grupo: "Saúde", tipo: "email", destino: null, origem_ok: true, periodo_ok: true, bloqueante: false, avisos: ["Este arquivo deve ser encaminhado por e-mail."] }] }, 200),
     mkItem({ id: 1047, nome: "DPE_FOLHA_202611.txt", pasta: "/DPE/out", tamanho: 640_000, ultimo_erro: "Timeout na conexão SFTP (30s)",
-      sugestoes: [{ regra: "Folha DPE", grupo: "Defensoria", tipo: "pasta", destino: DESTINOS[5], origem_ok: true, periodo_ok: true, bloqueante: false, avisos: [] }] }, 310),
-    mkItem({ id: 1030, nome: "TCE_CADASTRO_202610.txt", pasta: "/TCE/out", status: "enviado", destino_final: DESTINOS[6], concluido_por: "Maria Souza",
+      sugestoes: [{ regra: "Folha DPE", grupo: "Defensoria", tipo: "pasta", destino: DESTINOS[5]!, origem_ok: true, periodo_ok: true, bloqueante: false, avisos: [] }] }, 310),
+    mkItem({ id: 1030, nome: "TCE_CADASTRO_202610.txt", pasta: "/TCE/out", status: "enviado", destino_final: DESTINOS[6]!, concluido_por: "Maria Souza",
       concluido_em: new Date(Date.now() - 86400000).toISOString(), observacao: "" }, 1500),
     mkItem({ id: 1031, nome: "teste.txt", pasta: "/ALESP/out", status: "ignorado", diagnostico: "nao_consta", concluido_por: "João Lima",
       concluido_em: new Date(Date.now() - 2 * 86400000).toISOString(), observacao: "Arquivo de teste da entidade" }, 3000),
@@ -58,10 +58,10 @@ function criar() {
       concluido_em: new Date(Date.now() - 5 * 86400000).toISOString(), observacao: "Encaminhado por e-mail em 05/10" }, 8000),
   ];
   const eventos: Evento[] = [
-    { id: 9, quando: new Date(Date.now() - 86400000).toISOString(), item_id: 1030, usuario: "Maria Souza", acao: "ENVIADO", detalhe: `→ ${DESTINOS[6]} (FORÇADO)` },
+    { id: 9, quando: new Date(Date.now() - 86400000).toISOString(), item_id: 1030, usuario: "Maria Souza", acao: "ENVIADO", detalhe: `→ ${DESTINOS[6]!} (FORÇADO)` },
     { id: 8, quando: new Date(Date.now() - 2 * 86400000).toISOString(), item_id: 1031, usuario: "João Lima", acao: "IGNORADO", detalhe: "Arquivo de teste da entidade" },
     { id: 7, quando: new Date(Date.now() - 3 * 86400000).toISOString(), item_id: 1047, usuario: "João Lima", acao: "FALHA", detalhe: "Timeout na conexão SFTP (30s)" },
-    { id: 6, quando: new Date(Date.now() - 4 * 86400000).toISOString(), item_id: 1029, usuario: "Maria Souza", acao: "ENVIADO", detalhe: `→ ${DESTINOS[0]} SOBRESCREVEU` },
+    { id: 6, quando: new Date(Date.now() - 4 * 86400000).toISOString(), item_id: 1029, usuario: "Maria Souza", acao: "ENVIADO", detalhe: `→ ${DESTINOS[0]!} SOBRESCREVEU` },
     { id: 5, quando: new Date(Date.now() - 5 * 86400000).toISOString(), item_id: 1032, usuario: "Maria Souza", acao: "MANUAL", detalhe: "Encaminhado por e-mail" },
     { id: 4, quando: new Date(Date.now() - 5 * 3600000).toISOString(), item_id: 1047, usuario: "monitor", acao: "DETECTADO", detalhe: "/DPE/out" },
   ];
@@ -74,7 +74,7 @@ function criar() {
     { regra: "Cadastro TCE", grupo: "Controle", janela: "20 a 25", esperados: 1, recebidos: 0, status: "fora_da_janela" },
     { regra: "Folha DPE", grupo: "Defensoria", janela: "02 a 09", esperados: 1, recebidos: 0, status: "atrasado" },
   ];
-  const conflitos = new Set<string>([`${DESTINOS[0]}/FOLHA_ALESP_202611.txt`]);
+  const conflitos = new Set<string>([`${DESTINOS[0]!}/FOLHA_ALESP_202611.txt`]);
 
   const get = (id: number) => {
     const it = itens.find((i) => i.id === id);
