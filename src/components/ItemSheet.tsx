@@ -61,7 +61,7 @@ function Detalhe({ item }: { item: Item }) {
   const semSugestao = item.sugestoes.length === 0;
   const pendente = item.status === "pendente";
 
-  const [sel, setSel] = useState<string>(sugPasta.length === 1 && !sugPasta[0].bloqueante ? `s:0` : "");
+  const [sel, setSel] = useState<string>(sugPasta.length === 1 && !sugPasta[0]?.bloqueante ? `s:0` : "");
   const [confirmar, setConfirmar] = useState(false);
   const [risco, setRisco] = useState(false);
   const [sobrescrever, setSobrescrever] = useState(false);

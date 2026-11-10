@@ -80,11 +80,11 @@ export class ApiError extends Error {
   }
 }
 
-const BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "");
+const BASE = (import.meta.env['VITE_API_BASE_URL'] as string | undefined)?.replace(/\/$/, "");
 export const MODO_DEMO = !BASE;
 
 function authHeaders(): Record<string, string> {
-  const token = import.meta.env.VITE_API_TOKEN as string | undefined;
+  const token = import.meta.env['VITE_API_TOKEN'] as string | undefined;
   return token ? { "X-API-Key": token } : {};
 }
 
