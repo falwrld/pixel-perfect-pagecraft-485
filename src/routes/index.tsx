@@ -1,23 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/lib/api";
+import { PageHeader } from "@/components/AppShell";
+import { FilaTabela } from "@/components/FilaTabela";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({ meta: [{ title: "Pendentes — Monitor FTP → SFTP" }, { name: "description", content: "Arquivos recebidos no FTP aguardando despacho para o SFTP." }, { property: "og:title", content: "Pendentes — Monitor FTP → SFTP" }, { property: "og:description", content: "Arquivos recebidos no FTP aguardando despacho para o SFTP." }] }),
+  component: Pendentes,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Pendentes() {
+  const q = useQuery({ queryKey: ["fila", "pendente"], queryFn: () => api.fila("pendente"), refetchInterval: 10_000 });
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <PageHeader title="Pendentes" subtitle="Clique em um arquivo para conferir e despachar." />
+      <FilaTabela itens={q.data} carregando={q.isLoading} />
+    </>
   );
 }
